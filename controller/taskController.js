@@ -1,4 +1,4 @@
-import { getTasks, createTask, updateTask, deleteTask } from "../services/taskService.js"
+import { getTasks, getTasksById , createTask, updateTask, deleteTask } from "../services/taskService.js"
 import AppError from "../utils/AppError.js";
 import logger from "../utils/logger.js";
 
@@ -29,6 +29,26 @@ export const getTaskController = async (req, res, next) => {
             success: true,
             ...tasks
         })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const getTasksByIdController = async (req,res,next) => {
+    try {
+        const userId = req.user.id;
+        const taskId = Number(req.params.id);
+        const taskdata = await getTasksById(userId,taskId);
+
+        if(taskdata === null){
+            return next(new AppError("This Task is not created by you", 403));
+        }
+        
+        return res.status(200).json({
+            success: true,
+            taskdata
+        })
+    
     } catch (error) {
         next(error)
     }

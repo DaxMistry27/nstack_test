@@ -70,6 +70,11 @@ GET /task
 ```
 Access: User, Admin
 
+#### Get Task By Id only if that user created it
+```http
+GET /task/:id
+```
+
 #### Get All tasks with filtration date, status
 
 ```http

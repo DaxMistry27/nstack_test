@@ -1,6 +1,6 @@
 import prisma from "../config/db.js"
 
-export const getTasks = async ({ userId, status, date, order = "asc", sortBy = "createdAt", search, page = 1, limit = 10}) => {
+export const getTasks = async ({ userId, status, date, order = "asc", sortBy = "createdAt", search, page = 1, limit = 10 }) => {
 
     const where = {
         userId
@@ -58,6 +58,15 @@ export const getTasks = async ({ userId, status, date, order = "asc", sortBy = "
         currentPage: page,
         limit
     }
+}
+
+export const getTasksById = async (userId, id) => {
+    return await prisma.task.findUnique({
+        where: {
+            id,
+            userId
+        }
+    })
 }
 
 export const createTask = async (task) => {

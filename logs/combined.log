@@ -147,3 +147,33 @@
 {"level":"info","message":"GET - /task?date=2026-06-26T07:19:35.114Z","method":"GET","timestamp":"2026-06-26T07:20:40.729Z","url":"/task?date=2026-06-26T07:19:35.114Z"}
 {"level":"info","message":"GET - /task?date=2026-06-26T07:19:35","method":"GET","timestamp":"2026-06-26T07:20:54.918Z","url":"/task?date=2026-06-26T07:19:35"}
 {"level":"info","message":"GET - /task?date=2026-06-26T07:19:35.114Z","method":"GET","timestamp":"2026-06-26T07:21:06.880Z","url":"/task?date=2026-06-26T07:19:35.114Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:12:43.774Z"}
+{"level":"info","message":"POST - /auth/login","method":"POST","timestamp":"2026-06-26T08:13:20.174Z","url":"/auth/login"}
+{"level":"info","message":"User d@gmail.com logged in","timestamp":"2026-06-26T08:13:21.203Z"}
+{"level":"info","message":"GET - /task/1","method":"GET","timestamp":"2026-06-26T08:13:33.893Z","url":"/task/1"}
+{"level":"info","message":"GET - /task/2","method":"GET","timestamp":"2026-06-26T08:13:39.139Z","url":"/task/2"}
+{"level":"info","message":"GET - /task/3","method":"GET","timestamp":"2026-06-26T08:13:43.176Z","url":"/task/3"}
+{"level":"info","message":"GET - /task/4","method":"GET","timestamp":"2026-06-26T08:13:48.188Z","url":"/task/4"}
+{"level":"info","message":"GET - /task/5","method":"GET","timestamp":"2026-06-26T08:13:51.804Z","url":"/task/5"}
+{"level":"info","message":"GET - /task/3","method":"GET","timestamp":"2026-06-26T08:13:56.163Z","url":"/task/3"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:08.870Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:10.826Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:16.463Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:17.797Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:21.136Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:23.069Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:27.406Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:33.688Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:36.156Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:45.091Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:47.980Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:53.557Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:14:59.769Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:15:03.078Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:15:05.931Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:15:23.346Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:15:54.005Z"}
+{"level":"info","message":"server is running on 3000","timestamp":"2026-06-26T08:16:34.152Z"}
+{"level":"info","message":"GET - /task/3","method":"GET","timestamp":"2026-06-26T08:16:38.409Z","url":"/task/3"}
+{"level":"info","message":"GET - /task/1","method":"GET","timestamp":"2026-06-26T08:16:41.937Z","url":"/task/1"}
+{"level":"error","message":"This Task is not created by you","method":"GET","stack":"Error: This Task is not created by you\n    at getTasksByIdController (file:///C:/Users/RAJESH%20MISTRRY/Desktop/Nstack-Training/Test/controller/taskController.js:44:25)","timestamp":"2026-06-26T08:16:41.943Z","url":"/task/1"}
