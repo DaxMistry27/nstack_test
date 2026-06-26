@@ -1,3 +1,5 @@
+# JWT Auth + CRUD API
+
 ## Authentication & Authorization
 
 ### Authentication Features
