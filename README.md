@@ -1,177 +1,117 @@
 # JWT Auth + CRUD API
 
-## Authentication & Authorization
+A Node.js and Express.js REST API for JWT authentication and task management using PostgreSQL and Prisma.
 
-### Authentication Features
+## Prerequisites
 
-* User Registration
-* User Login
-* User Logout
-* Access Token Generation
-* Refresh Token Generation
-* Refresh Token Validation
-* Protected Routes using JWT
-* Cookie-based Refresh Token Storage
+Before running the project, make sure you have:
 
-### Authentication Endpoints
+* Node.js installed
+* npm installed
+* PostgreSQL running locally or on a remote server
+* Prisma CLI available through the project dependencies
 
-#### Register User
+## Installation
 
-```http
-POST /auth/register
+Install dependencies:
+
+```bash
+npm install
 ```
 
-#### Login User
+Create a `.env` file in the project root and add the required environment variables:
 
-```http
-POST /auth/login
+```env
+NODE_ENV="development"
+PORT=5000
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:DATABASE_PORT/DATABASE_NAME"
+HOST=localhost
+USER=postgres
+PASSWORD=your_password
+DATABASE_NAME=your_database_name
+DATABASE_PORT=5432
+ACCESS_SECRET=your_access_token_secret
+REFRESH_SECRET=your_refresh_token_secret
 ```
 
-#### Refresh Access Token
+Generate Prisma client:
 
-```http
-POST /auth/refresh
+```bash
+npx prisma generate
 ```
 
-#### Logout User
+Run database migrations:
 
-```http
-POST /auth/logout
+```bash
+npx prisma migrate dev
 ```
 
-### Authentication Flow
+## Run Commands
 
-1. User registers an account.
-2. User logs in with valid credentials.
-3. Server generates an Access Token and Refresh Token.
-4. Access Token is used to access protected routes.
-5. Refresh Token is stored and used to generate new Access Tokens.
-6. User logs out and the refresh token is invalidated.
+Start the server in development mode:
 
-## Task API
-
-### Overview
-
-The Tasks API demonstrates role-based access control using JWT authentication.
-
-### Features
-
-* Get All Tasks 
-* Create Task
-* Update Task
-* Delete Task
-* Protected Routes
-* Role-Based Authorization
-
-### API Endpoints
-
-#### Get All Tasks
-
-```http
-GET /task
-```
-Access: User, Admin
-
-#### Get Task By Id only if that user created it
-```http
-GET /task/:id
+```bash
+npm run dev
 ```
 
-#### Get All tasks with filtration date, status
+Start the server in production mode:
 
-```http
-GET /task/status=PENDING&date=07-15-2026
+```bash
+npm start
 ```
 
-#### Get All tasks with pagination 
+Run tests:
 
-```http
-GET /task/page=1&limit=5
+```bash
+npm test
 ```
 
-#### Get All Tasks with Searching By title and content
+## Available Scripts
 
-```http
-GET /task/search=demo
+* `npm run dev` - Start the server with Nodemon
+* `npm start` - Start the server with Node.js
+* `npm test` - Run the test suite with Vitest
+* `npm run lint` - Check code style with ESLint
+* `npm run lint:fix` - Automatically fix lint issues
+
+## Environment Variables
+
+The project uses these environment variables:
+
+* `PORT` - Server port
+* `DATABASE_URL` - Prisma database connection string
+* `HOST` - PostgreSQL host
+* `USER` - PostgreSQL username
+* `PASSWORD` - PostgreSQL password
+* `DATABASE_NAME` - PostgreSQL database name
+* `DATABASE_PORT` - PostgreSQL port
+* `ACCESS_SECRET` - JWT access token secret
+* `REFRESH_SECRET` - JWT refresh token secret
+
+## Folder Structure
+
+```text
+Test/
+|-- config/        Database and application configuration
+|-- controller/    Handles HTTP requests and responses
+|-- documents/     API documentation, examples, and Postman collection
+|-- logs/          Application log files
+|-- middleware/    Authentication, validation, logger, and error middleware
+|-- prisma/        Prisma schema and database migrations
+|-- routes/        API route definitions
+|-- services/      Business logic for authentication and tasks
+|-- test/          Automated test cases
+|-- utils/         Shared helper functions and logger utilities
+|-- validations/   Joi validation schemas
+|-- .env           Local environment variables
+|-- .env.example   Example environment file
+|-- package.json   Project scripts and dependencies
+|-- prisma.config.ts  Prisma configuration file
+|-- README.md      Project setup guide
+`-- server.js      Express server entry point
 ```
 
-#### Get All Tasks with Sorting By anything and Order ASC or DESC
+## Notes
 
-```http
-GET /task/sortBy=createdAt&order=ASC
-```
-
-#### Create Task
-
-```http
-POST /task
-```
-
-Access: User, Admin
-
-#### Update Task
-
-```http
-PUT /task/:id
-```
-
-Access: User, Admin
-
-#### Delete Task
-
-```http
-DELETE /task/:id
-```
-
-Access: User, Admin
-
-
-### Middleware Used
-
-#### Authentication Middleware
-
-Verifies JWT access tokens and authenticates users before granting access to protected routes.
-
-#### Authorization Middleware
-
-Controls access based on user roles and permissions.
-
-### Error Middleware
-
-Globally handles error that comes
-
-### Logger Middleware
-Logger is used to log Errors, info , warning all in logs/combined.log and only Error in logs/Error.log using Winston library
-
-### Validation & Error Handling
-
-* Input Validation
-* Invalid Credentials Handling
-* Invalid Token Handling
-* Expired Token Handling
-* Unauthorized Access Handling
-* Forbidden Access Handling
-* Centralized Error Handling Middleware
-* Proper HTTP Status Codes and Error Messages
-
-### Database Integration
-
-* PostgreSQL Database Connection Using Prisma and pg
-* User Data Storage
-* Token Storage
-* CRUD Operations for tasks
-* Secure Database Queries
-
-### Testing
-
-All APIs were tested using Postman:
-
-* Register User
-* Login User
-* Refresh Token
-* Logout User
-* Get Tasks
-* Create Task
-* Update Task
-* Delete Task
-* Authentication and Authorization Scenarios
+* API feature documentation should be kept in the `documents/` folder.
+* Log files in `logs/` should not be committed to Git.

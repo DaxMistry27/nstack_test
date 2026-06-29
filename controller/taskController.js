@@ -56,15 +56,16 @@ export const getTasksByIdController = async (req,res,next) => {
 
 export const createTaskController = async (req, res, next) => {
     try {
-        const { title, content } = req.body;
+        const { title, content , status } = req.body;
         const task = await createTask({
             title,
             content,
+            status,
             userId: req.user.id
         })
 
-        if (!title || !content) {
-            return next(new AppError("Title and content are required", 400));
+        if (!title || !content || !status) {
+            return next(new AppError("Title, content and status are required", 400));
         }
 
         logger.info(`Task created by user ${req.user.id}`);
@@ -84,14 +85,15 @@ export const updateTaskController = async (req, res, next) => {
     try {
         const id = Number(req.params.id);
         const userId = req.user.id;
-        const { title, content } = req.body;
+        const { title, content , status} = req.body;
 
         const task = await updateTask(
             id,
             userId,
             {
                 title,
-                content
+                content,
+                status
             }
         );
 

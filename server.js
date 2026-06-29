@@ -21,6 +21,10 @@ app.use("/task", taskRouter);
 
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT, () => {
-    logger.info(`server is running on ${process.env.PORT}`);
-})
+if (process.env.NODE_ENV !== "test") {
+    app.listen(process.env.PORT, () => {
+        logger.info(`server is running on ${process.env.PORT}`);
+    });
+}
+
+export default app;
