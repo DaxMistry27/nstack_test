@@ -31,11 +31,13 @@ export const registerUserController = async (req, res, next) => {
         return res.status(201).json({
             success: true,
             message: "Successfully Registered.",
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            role: user.role
-        })
+            data: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
     } catch (error) {
         next(error)
     }
@@ -102,8 +104,10 @@ export const loginUserController = async (req, res, next) => {
                 return res.status(200).json({
                     success: true,
                     message: "Login Successfully",
-                    accessToken,
-                    refreshToken
+                    data: {
+                        accessToken,
+                        refreshToken
+                    }
                 })
 
             } else if (!isMatched) {
@@ -162,7 +166,10 @@ export const refreshTokenController = async (req, res, next) => {
 
         return res.status(200).json({
             success: true,
-            accessToken,
+            message: "Token refreshed successfully",
+            data: {
+                accessToken
+            },
         });
 
     } catch (error) {

@@ -19,3 +19,5 @@ This module handles task creation, retrieval, update, and deletion.
 
 ## Notes
 - Task records are linked to the user who created them.
+- Task API responses use `{ success, message, data }`.
+- Task records, lists, pagination metadata, and mutation results are returned inside `data`.

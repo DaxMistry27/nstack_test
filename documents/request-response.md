@@ -2,6 +2,16 @@
 
 This document contains sample request and response payloads for the JWT Auth + CRUD API.
 
+All API responses follow this common format:
+
+```json
+{
+  "success": true,
+  "message": "Optional message",
+  "data": "Optional response data"
+}
+```
+
 ## 1. Register User
 
 ### Request
@@ -20,10 +30,12 @@ This document contains sample request and response payloads for the JWT Auth + C
 {
   "success": true,
   "message": "Successfully Registered.",
-  "id": 1,
-  "name": "Test User",
-  "email": "test@example.com",
-  "role": "USER"
+  "data": {
+    "id": 1,
+    "name": "Test User",
+    "email": "test@example.com",
+    "role": "USER"
+  }
 }
 ```
 
@@ -53,8 +65,10 @@ This document contains sample request and response payloads for the JWT Auth + C
 {
   "success": true,
   "message": "Login Successfully",
-  "accessToken": "your-access-token",
-  "refreshToken": "your-refresh-token"
+  "data": {
+    "accessToken": "your-access-token",
+    "refreshToken": "your-refresh-token"
+  }
 }
 ```
 
@@ -79,7 +93,10 @@ The refresh token is read from the HTTP-only cookie.
 ```json
 {
   "success": true,
-  "accessToken": "new-access-token"
+  "message": "Token refreshed successfully",
+  "data": {
+    "accessToken": "new-access-token"
+  }
 }
 ```
 
@@ -115,7 +132,8 @@ The refresh token is read from the HTTP-only cookie.
 ```json
 {
   "title": "Demo Task",
-  "content": "This is a sample task content"
+  "content": "This is a sample task content",
+  "status": "PENDING"
 }
 ```
 
@@ -124,7 +142,7 @@ The refresh token is read from the HTTP-only cookie.
 ```json
 {
   "success": true,
-  "message": "Task created successfully",
+  "message": "Task is Created",
   "data": {
     "id": 1,
     "title": "Demo Task",
@@ -148,41 +166,28 @@ No request body is required.
 ```json
 {
   "success": true,
-  "data": [
-    {
-      "id": 1,
-      "title": "Demo Task",
-      "content": "This is a sample task content",
-      "status": "PENDING",
-      "userId": 1,
-      "createdAt": "2026-06-29T10:00:00.000Z",
-      "updatedAt": "2026-06-29T10:00:00.000Z"
-    }
-  ]
+  "message": "Tasks fetched successfully",
+  "data": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Demo Task",
+        "content": "This is a sample task content",
+        "status": "PENDING",
+        "userId": 1,
+        "createdAt": "2026-06-29T10:00:00.000Z",
+        "updatedAt": "2026-06-29T10:00:00.000Z"
+      }
+    ],
+    "totalItems": 1,
+    "totalPages": 1,
+    "currentPage": 1,
+    "limit": 10
+  }
 }
 ```
 
-## 7. Update Task
-
-### Request
-
-```json
-{
-  "title": "Updated Task Title",
-  "content": "Updated task content"
-}
-```
-
-### Success Response
-
-```json
-{
-  "success": true,
-  "message": "Task updated successfully"
-}
-```
-
-## 8. Delete Task
+## 7. Get Task By Id
 
 ### Request
 
@@ -193,7 +198,58 @@ No request body is required.
 ```json
 {
   "success": true,
-  "message": "Task deleted successfully"
+  "message": "Task fetched successfully",
+  "data": {
+    "id": 1,
+    "title": "Demo Task",
+    "content": "This is a sample task content",
+    "status": "PENDING",
+    "userId": 1,
+    "createdAt": "2026-06-29T10:00:00.000Z",
+    "updatedAt": "2026-06-29T10:00:00.000Z"
+  }
+}
+```
+
+## 8. Update Task
+
+### Request
+
+```json
+{
+  "title": "Updated Task Title",
+  "content": "Updated task content",
+  "status": "COMPLETED"
+}
+```
+
+### Success Response
+
+```json
+{
+  "success": true,
+  "message": "Task Updated",
+  "data": {
+    "count": 1
+  }
+}
+```
+
+## 9. Delete Task
+
+### Request
+
+No request body is required.
+
+### Success Response
+
+```json
+{
+  "success": true,
+  "message": "Task Deleted",
+  "data": {
+    "count": 1
+  }
 }
 ```
 

@@ -1,4 +1,4 @@
-import { getTasks, getTasksById , createTask, updateTask, deleteTask } from "../services/taskService.js"
+import { getTasks, getTasksById, createTask, updateTask, deleteTask } from "../services/taskService.js"
 import AppError from "../utils/AppError.js";
 import logger from "../utils/logger.js";
 
@@ -27,28 +27,30 @@ export const getTaskController = async (req, res, next) => {
 
         return res.status(200).json({
             success: true,
-            ...tasks
-        })
+            message: "Tasks fetched successfully",
+            data: tasks
+        });
     } catch (error) {
         next(error)
     }
 }
 
-export const getTasksByIdController = async (req,res,next) => {
+export const getTasksByIdController = async (req, res, next) => {
     try {
         const userId = req.user.id;
         const taskId = Number(req.params.id);
-        const taskdata = await getTasksById(userId,taskId);
+        const taskData = await getTasksById(userId, taskId);
 
-        if(taskdata === null){
+        if (taskData === null) {
             return next(new AppError("This Task is not created by you", 403));
         }
-        
+
         return res.status(200).json({
             success: true,
-            taskdata
+            message: "Task fetched successfully",
+            data: taskData
         })
-    
+
     } catch (error) {
         next(error)
     }
@@ -56,7 +58,7 @@ export const getTasksByIdController = async (req,res,next) => {
 
 export const createTaskController = async (req, res, next) => {
     try {
-        const { title, content , status } = req.body;
+        const { title, content, status } = req.body;
         const task = await createTask({
             title,
             content,
@@ -73,7 +75,7 @@ export const createTaskController = async (req, res, next) => {
         return res.status(201).json({
             success: true,
             message: "Task is Created",
-            task
+            data: task
         })
 
     } catch (error) {
@@ -85,7 +87,7 @@ export const updateTaskController = async (req, res, next) => {
     try {
         const id = Number(req.params.id);
         const userId = req.user.id;
-        const { title, content , status} = req.body;
+        const { title, content, status } = req.body;
 
         const task = await updateTask(
             id,
@@ -106,7 +108,7 @@ export const updateTaskController = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "Task Updated",
-            task
+            data: task
         });
 
     } catch (error) {
@@ -129,7 +131,7 @@ export const deleteTaskController = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "Task Deleted",
-            task
+            data: task
         });
 
     } catch (error) {

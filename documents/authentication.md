@@ -23,3 +23,5 @@ This project uses JWT authentication with access tokens and refresh tokens.
 ## Notes
 - Access token is stored in an HTTP-only cookie.
 - Refresh token is also stored in an HTTP-only cookie.
+- Successful authentication responses use `{ success, message, data }`.
+- Token values returned in the response are placed inside `data`.

@@ -24,9 +24,9 @@ describe("Auth API", () => {
         expect(res.status).toBe(201);
         expect(res.body.success).toBe(true);
         expect(res.body.message).toBe("Successfully Registered.");
-        expect(res.body.name).toBe("Test User");
-        expect(res.body.email).toMatch(/@example\.com$/);
-        expect(res.body.id).toBeDefined();
-        expect(res.body.role).toBeDefined();
+        expect(res.body.data.name).toBe("Test User");
+        expect(res.body.data.email).toMatch(/@example\.com$/);
+        expect(res.body.data.id).toBeDefined();
+        expect(res.body.data.role).toBeDefined();
     });
 });

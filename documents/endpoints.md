@@ -25,7 +25,7 @@ This document lists the available API endpoints in the project and explains what
 - `password` must be at least 6 characters long
 
 **Response:**
-- Returns the created user details
+- Returns `success`, `message`, and the created user details inside `data`
 - Password is never returned in the response
 
 ---
@@ -45,7 +45,7 @@ This document lists the available API endpoints in the project and explains what
 ```
 
 **Response:**
-- Returns an access token and a refresh token
+- Returns `success`, `message`, and access/refresh tokens inside `data`
 - Tokens are also stored in HTTP-only cookies
 
 **Notes:**
@@ -66,7 +66,7 @@ This document lists the available API endpoints in the project and explains what
 - Refresh token is read from the HTTP-only cookie
 
 **Response:**
-- Returns a new access token
+- Returns `success`, `message`, and the new access token inside `data`
 - Updates the access token cookie
 
 **Notes:**
@@ -87,6 +87,7 @@ This document lists the available API endpoints in the project and explains what
 - Refresh token is read from the HTTP-only cookie
 
 **Response:**
+- Returns `success` and `message`
 - Clears access and refresh token cookies
 - Removes token data from storage
 
@@ -124,8 +125,8 @@ GET /task?sortBy=createdAt&order=ASC
 ```
 
 **Response:**
-- Returns a list of the current user's tasks
-- Pagination metadata may also be included
+- Returns `success`, `message`, and the current user's tasks inside `data`
+- Pagination metadata may also be included inside `data`
 
 ---
 
@@ -149,7 +150,7 @@ GET /task/1
 ```
 
 **Response:**
-- Returns the task details if the task belongs to the logged-in user
+- Returns `success`, `message`, and task details inside `data` if the task belongs to the logged-in user
 - Returns not found or unauthorized response otherwise
 
 ---
@@ -166,17 +167,18 @@ GET /task/1
 ```json
 {
   "title": "Demo Task",
-  "content": "This is a sample task content"
+  "content": "This is a sample task content",
+  "status": "PENDING"
 }
 ```
 
 **Validation:**
 - `title` must be at least 3 characters long
 - `content` must be at least 5 characters long
+- `status` must be either `PENDING` or `COMPLETED`
 
 **Response:**
-- Returns the created task data
-- `status` is set automatically, usually to `PENDING`
+- Returns `success`, `message`, and created task data inside `data`
 - `createdAt` and `updatedAt` are generated automatically
 
 ---
@@ -196,7 +198,8 @@ GET /task/1
 ```json
 {
   "title": "Updated Task Title",
-  "content": "Updated task content"
+  "content": "Updated task content",
+  "status": "COMPLETED"
 }
 ```
 
@@ -205,7 +208,7 @@ GET /task/1
 - Users cannot update another user's task
 
 **Response:**
-- Returns success message and updated task information
+- Returns `success`, `message`, and update result inside `data`
 
 ---
 
@@ -225,7 +228,7 @@ GET /task/1
 - Users cannot delete another user's task
 
 **Response:**
-- Returns a success message when the task is deleted
+- Returns `success`, `message`, and delete result inside `data`
 
 ## Authentication and Authorization Rules
 
@@ -247,6 +250,8 @@ Common error cases handled by these endpoints include:
 - Unauthorized access
 - Forbidden access
 - Task not found
+
+Error responses return `success: false` and a `message`.
 
 ## Notes
 

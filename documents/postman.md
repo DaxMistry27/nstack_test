@@ -13,3 +13,6 @@ Import the JSON file into Postman to test the API endpoints.
 - Authentication requests
 - Task requests
 - Sample test scenarios
+
+## Response Format
+Successful responses use `{ success, message, data }`. Error responses use `{ success, message }`.
